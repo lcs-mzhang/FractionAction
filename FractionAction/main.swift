@@ -14,7 +14,7 @@ var validDenominator = 0
 // INPUT
 // Collect and filter user input here
 
-while(true) {
+while true {
     print("Numerator?")
     guard let rawNumeratorInput = readLine() else {
         continue
@@ -28,6 +28,9 @@ while(true) {
     } //Filter out input that is negative
     validNumerator = numeratorInput
     
+    break
+}
+while true {
     print("Denominator?")
     guard let rawDenominatorInput = readLine() else {
         continue
