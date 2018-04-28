@@ -10,7 +10,6 @@ import Foundation
 
 var validNumerator = 0
 var validDenominator = 0
-var GCF = 0
 
 // INPUT
 // Collect and filter user input here
@@ -19,23 +18,27 @@ while(true) {
     print("Numerator?")
     guard let rawNumeratorInput = readLine() else {
         continue
-    }
+    } //Filter out nil input
     guard let numeratorInput = Int(rawNumeratorInput) else {
         continue
-    }
-    if numeratorInput < 1 {
-        print("Numerator cannot be 0 or negative!")
+    } //Filter out non-integer input
+    if numeratorInput < 0 {
+        print("Numerator cannot be negative!")
         continue
-    }
+    } //Filter out input that is negative
     validNumerator = numeratorInput
     
     print("Denominator?")
     guard let rawDenominatorInput = readLine() else {
         continue
-    }
+    } //Filter out nil input
     guard let denominatorInput = Int(rawDenominatorInput) else {
         continue
-    }
+    } //Filter out non-integer input
+    if denominatorInput < 1 {
+        print("Denominator cannot be 0 or lower!")
+        continue
+    } //Filter out input that is 0 or non-positive integers
     validDenominator = denominatorInput
     
     break
@@ -44,13 +47,12 @@ while(true) {
 // PROCESS
 // Implement the primary logic of the problem here
 
-//gcf finding thing
+//the following code finds the gcf
+//thanks mr euclid
 
 var a = 0
 var b = 0
 var substitute = 0
-
-//thanks mr euclid
 
 if validNumerator >= validNumerator {
     a = validNumerator
@@ -67,36 +69,14 @@ while b != 0 {
 }
 print("The GCF is \(a)")
 
-//var a = 270
-//var b = 192
-//
-//while b != 0 {
-//    substitute = a % b
-//    a = b
-//    b = substitute
-//}
-//print("The GCF is \(a)")
-
-
 // OUTPUT
 // Report results to the user here
 
 if validNumerator/validDenominator > 0 && validNumerator%validDenominator/a > 0 {
     print("Your mixed fraction is \(validNumerator/validDenominator) \((validNumerator%validDenominator)/a)/\((validDenominator)/a)")
-}
+} //print mixed fraction
 else if validNumerator%validDenominator/a > 0 {
     print("Your fraction is \((validNumerator%validDenominator)/a)/\((validDenominator)/a)")
-} else {
+} else { //print fraction
     print("Your whole number is \(validNumerator/validDenominator)")
-}
-
-//if validNumerator%validDenominator/a > 0 {
-//    print("Your mixed fraction is \(validNumerator/validDenominator) \((validNumerator%validDenominator)/a)/\((validDenominator)/a)")
-//}
-//else if validNumerator/validDenominator > 0 {
-//    print("Your fraction is \((validNumerator%validDenominator)/a)/\((validDenominator)/a)")
-//} else {
-//    print("Your whole number is \(validNumerator/validDenominator)")
-//}
-
-//Just make sure that fully reducable fractions(such as 12/6) dont display as 6 0/1.
+} //print whole number
